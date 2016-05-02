@@ -23,6 +23,7 @@ branches:
         - master
         - "1.2"
         - "1.3"
+        - "selenium_attempt"
 
 before_install:
     - phpenv config-rm xdebug.ini
