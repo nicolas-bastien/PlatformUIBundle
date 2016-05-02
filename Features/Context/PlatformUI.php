@@ -229,19 +229,11 @@ class PlatformUI extends Context
         if (!$baseElement) {
             $baseElement = $this->getSession()->getPage();
         }
-        $elements = $this->spin(
-            function () use ($locator, $baseElement) {
-                $elements = $baseElement->findAll('css', $locator);
-                foreach ($elements as $element) {
-                    // An exception may be thrown if the element is not valid/attached to DOM.
-                    $element->getValue();
-                }
-
-                return $elements;
-            }
-        );
-
-        return $elements;
+        
+        if ($this->getSession()->getDriver()->wait(10, $locator) === false) {
+            throw new \RuntimeException("Timeout while waiting for element $locator");
+        }
+        return $baseElement->findAll('css', $locator);
     }
 
     /**
@@ -257,24 +249,11 @@ class PlatformUI extends Context
         if (!$baseElement) {
             $baseElement = $this->getSession()->getPage();
         }
-        $element = $this->spin(
-            function () use ($selector, $baseElement, $checkVisibility) {
-                $element = $baseElement->find('css', $selector);
-                if (!$element) {
-                    throw new \Exception("Element with selector '$selector' was not found");
-                }
-                // An exception may be thrown if the element is not valid/attached to DOM.
-                $element->getValue();
 
-                if ($checkVisibility && !$element->isVisible()) {
-                    throw new \Exception("Element with selector '$selector' is not visible");
-                }
-
-                return $element;
-            }
-        );
-
-        return $element;
+        if ($this->getSession()->getDriver()->wait(10, $selector) === false) {
+            throw new \RuntimeException("Timeout while waiting for element $selector");
+        }
+        return $baseElement->find('css', $selector);
     }
 
     /**
