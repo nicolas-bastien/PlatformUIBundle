@@ -16,12 +16,12 @@ YUI.add('ez-alloyeditor-toolbar-config-heading', function (Y) {
             name: 'styles',
             cfg: {
                 styles: [
-                    {name: 'Heading 1', style: {element: 'h1'}},
-                    {name: 'Heading 2', style: {element: 'h2'}},
-                    {name: 'Heading 3', style: {element: 'h3'}},
-                    {name: 'Heading 4', style: {element: 'h4'}},
-                    {name: 'Heading 5', style: {element: 'h5'}},
-                    {name: 'Heading 6', style: {element: 'h6'}},
+                    {name: Y.eZ.trans('heading.1', {}, 'onlineditor'), style: {element: 'h1'}},
+                    {name: Y.eZ.trans('heading.2', {}, 'onlineditor'), style: {element: 'h2'}},
+                    {name: Y.eZ.trans('heading.3', {}, 'onlineditor'), style: {element: 'h3'}},
+                    {name: Y.eZ.trans('heading.4', {}, 'onlineditor'), style: {element: 'h4'}},
+                    {name: Y.eZ.trans('heading.5', {}, 'onlineditor'), style: {element: 'h5'}},
+                    {name: Y.eZ.trans('heading.6', {}, 'onlineditor'), style: {element: 'h6'}},
                 ]
             }
         };
